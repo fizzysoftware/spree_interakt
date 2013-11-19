@@ -2,7 +2,7 @@ SpreeInterakt
 =============
 
 Spree extension to integrate Interakt with your Spree-Commerce store .
-visit http://interakt.co for more details.
+visit <a href='http://docs.interakt.co/integrations/spreecommerce' target='_blank'>http://docs.interakt.co/integrations/spreecommerce</a> for more details.
 
 PreRequisite
 ------------

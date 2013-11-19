@@ -10,7 +10,7 @@ module SpreeInterakt
     def verify_reponse( response)
       raise "Your 'app_id' or 'api_key' is not corrent. Please correct it in 'config/initializers/interakt.rb'" if response.code.to_i == 401
       raise "Something went wrong. Please report the issue." if response.code.to_i == 500
-      raise "Got #{response.code}"
+      raise "Got #{response.code}" if response.code.to_i == 404
       response_verified = true
     end
 

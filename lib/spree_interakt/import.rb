@@ -11,6 +11,18 @@ module SpreeInterakt
       new.start
     end
 
+    def self.handle_new_order_event(order)
+      puts 'Orders Event is: ' + order.to_yaml
+      new.perform(order)
+    end
+
+    def perform(order)
+      members_json  = create_member_json_from_order(Array(order))
+      send_members( members_json)
+      @members_sent += members_json.length
+      puts "#{members_sent} users sent."
+    end
+
     def self.uri
       host = (Rails.env.production? ? "https://interakt.co" : "http://localhost:4000")
       URI.parse(host + "/api/v1/members/import_data")

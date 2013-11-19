@@ -1,10 +1,10 @@
 SpreeInterakt
 =============
 
-spree_interakt extension allows you to integrate your spreecommerce application to Interakt.
+Spree extension to integrate Interakt with your Spree-Commerce store .
 visit http://interakt.co for more details.
 
-Prerequisite
+PreRequisite
 ------------
 
 ```shell
@@ -15,8 +15,9 @@ Prerequisite
 Note:
 
 ```shell
-Your APP_ID and API_KEY are specific to interakt Project, and can be found here:
-http://interakt.co/projects/XXXXXXXXXXXXX/api_info in Settings > API Information Page.
+APP_ID and API_KEY are specific to your interakt Project.
+It can be found in Settings > API Information Page.
+http://interakt.co/projects/XXXXXXXXXX/api_info
 ```
 
 Installation
@@ -25,7 +26,7 @@ Installation
 Add spree_interakt to your Gemfile:
 
 ```ruby
-gem 'spree_interakt'
+gem 'spree_interakt', :git => 'https://github.com/fizzysoftware/spree_interakt.git'
 ```
 
 Bundle your dependencies and run the installation generator:

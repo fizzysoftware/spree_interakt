@@ -12,7 +12,7 @@ module SpreeInterakt
     end
 
     def self.handle_new_order_event(order)
-      puts 'Orders Event is: ' + order.to_yaml
+      # puts 'Orders Event is: ' + order.to_yaml
       new.perform(order)
     end
 
@@ -24,7 +24,7 @@ module SpreeInterakt
     end
 
     def self.uri
-      host = (Rails.env.production? ? "https://interakt.co" : "http://localhost:4000")
+      host = (Rails.env.production? ? "https://interakt.co" : "http://localhost:3000")
       URI.parse(host + "/api/v1/members/import_data")
     end
 
@@ -41,7 +41,7 @@ module SpreeInterakt
     end
 
     def start_sending_in_batches
-      puts "Ready to go..."
+      puts "Init Import Ready to go..."
       Spree::Order.find_in_batches batch_size: max_batch_size do |orders|
         members_json  = create_member_json_from_order(orders)
         send_members( members_json)

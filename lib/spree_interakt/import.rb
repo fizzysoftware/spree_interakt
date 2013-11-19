@@ -12,7 +12,7 @@ module SpreeInterakt
     end
 
     def self.uri
-      host = (Rails.env.production? ? "https://interakt.co" : "http://localhost:3000")
+      host = (Rails.env.production? ? "https://interakt.co" : "http://localhost:4000")
       URI.parse(host + "/api/v1/members/import_data")
     end
 
@@ -29,6 +29,7 @@ module SpreeInterakt
     end
 
     def start_sending_in_batches
+      puts "Ready to go..."
       Spree::Order.find_in_batches batch_size: max_batch_size do |orders|
         members_json  = create_member_json_from_order(orders)
         send_members( members_json)
@@ -60,23 +61,20 @@ module SpreeInterakt
     end
 
     def create_member_json_from_order(orders)
-      # Create User hash from Order
-      # { email == orders.delete(email),
-      #   + attributes from Spree::Address,
-      #   orders: { }
-      #   }
       orders.map do |order|
         member_hash = {}
         member_hash['email'] = order.email
         address = Spree::Address.find(order.bill_address_id) rescue nil
-        member_hash.merge(address.attributes) if address.present?
+        member_hash.merge!(address.attributes.except('id')) if address.present?
         member_hash.merge!('orders' => create_importable_order(order))
+        # puts "Member generated is : #{member_hash.to_json}"
       end.compact
     end
 
     def create_importable_order(order)
-      new_order = order.attributes.except('email')
+      new_order = order.attributes.except('email', 'id')
       new_order['unique_id'] = order.attributes.delete('id')
+      new_order
     end
 
   end

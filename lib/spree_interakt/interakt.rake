@@ -1,7 +1,7 @@
 namespace :interakt do
 
-  desc "Import your users data into interakt"
-  task :import => :environment do
+  desc "Start Integration with interakt"
+  task :start => :environment do
     begin
       SpreeInterakt::Import.start
     rescue => e

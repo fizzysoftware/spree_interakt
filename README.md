@@ -1,7 +1,23 @@
 SpreeInterakt
 =============
 
-Introduction goes here.
+spree_interakt extension allows you to integrate your spreecommerce application to Interakt.
+visit http://interakt.co for more details.
+
+Prerequisite
+------------
+
+```shell
+1) Account in Interakt (You can start for free)
+2) Project in Interakt to which the Data needs to be imported.
+```
+
+Note:
+
+```shell
+Your APP_ID and API_KEY are specific to interakt Project, and can be found here:
+http://interakt.co/projects/XXXXXXXXXXXXX/api_info in Settings > API Information Page.
+```
 
 Installation
 ------------
@@ -17,6 +33,12 @@ Bundle your dependencies and run the installation generator:
 ```shell
 bundle
 bundle exec rails g spree_interakt:install APP_ID API_KEY
+```
+
+Integrate with Interakt
+
+```shell
+RAILS_ENV=production rake interakt:start
 ```
 
 Testing

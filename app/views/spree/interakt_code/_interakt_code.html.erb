@@ -2,7 +2,7 @@
   (function() {
   var interakt = document.createElement('script');
   interakt.type = 'text/javascript'; interakt.async = true;
-  interakt.src = "http://interakt.co/interakt/<%= SpreeInterakt.config.app_id %>.js"
+  interakt.src = "http://localhost:3000/interakt/<%= SpreeInterakt.config.app_id %>.js"
   var scrpt = document.getElementsByTagName('script')[0];
   scrpt.parentNode.insertBefore(interakt, scrpt);
   })()
